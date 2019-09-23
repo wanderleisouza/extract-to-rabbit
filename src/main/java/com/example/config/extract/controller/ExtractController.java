@@ -3,29 +3,33 @@ package com.example.config.extract.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.config.extract.domain.Customer;
 import com.example.config.extract.service.ExtractService;
+import com.example.config.extract.service.LoadService;
 
-@Controller
+@RestController
 public class ExtractController {
 
 	@Autowired
 	private ExtractService extractService;
+	@Autowired
+	private LoadService loadService;
 
 	@GetMapping("/")
-	public ResponseEntity<Void> send() throws Exception {
-
+	public void send() throws Exception {
 		List<Customer> list = extractService.loadCustomersFromFile("data.csv");
 		for (Customer customer : list) {
 			extractService.sendToQueue(customer);
 		}
+	}
 
-		return new ResponseEntity<Void>(HttpStatus.OK);
+	@GetMapping("/{id}")
+	public Customer findById(@PathVariable final String id) {
+		return loadService.findById(id);
 	}
 
 }
