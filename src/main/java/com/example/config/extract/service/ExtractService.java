@@ -1,4 +1,4 @@
-package com.example.config.extract;
+package com.example.config.extract.service;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,11 +11,14 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.config.extract.domain.Customer;
+
 @Service
 public class ExtractService {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
+
 	public static final String queueName = "customersQueue";
 	private Queue queue = new Queue(queueName, true);
 	
