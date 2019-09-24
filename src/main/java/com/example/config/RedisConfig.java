@@ -25,8 +25,8 @@ public class RedisConfig {
 	private void initDomainRedisTemplate(RedisTemplate<String, Object> redisTemplate, RedisConnectionFactory factory) {
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-		redisTemplate.setHashValueSerializer(new GzipRedisSerializer(getValueSerializer()));
-		redisTemplate.setValueSerializer(new GzipRedisSerializer(getValueSerializer()));
+		redisTemplate.setHashValueSerializer(new LZ4RedisSerializer(getValueSerializer()));
+		redisTemplate.setValueSerializer(new LZ4RedisSerializer(getValueSerializer()));
 		redisTemplate.setEnableTransactionSupport(true);
 		redisTemplate.setConnectionFactory(factory);
 		redisTemplate.afterPropertiesSet();
