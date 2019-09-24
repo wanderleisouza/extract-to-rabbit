@@ -1,28 +1,30 @@
 package com.example.config.extract.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.config.extract.domain.Customer;
-import com.example.config.extract.repository.CustomerRepository;
-import com.example.customer.exception.CustomerNotFoundException;
 
 @Service
 public class LoadService {
 
-	@Autowired
-	CustomerRepository customerRepository;
+	private String CUSTOMER_KEY_PREFIX = "c";
+	
+    @Autowired
+    private RedisService redisService;
 
     public Customer save(Customer customer) {
-        return customerRepository.save(customer);
+    	Map<String, Object> modelMap = new HashMap<String, Object>();
+    	modelMap.put(customer.getId(), customer);
+        redisService.setKey(CUSTOMER_KEY_PREFIX.concat(customer.getId()), modelMap);
+        return customer;
     }
     
     public Customer findById(String id) {
-        return customerRepository.findById(id).orElseThrow(CustomerNotFoundException::new);
+        return (Customer) redisService.getValue(CUSTOMER_KEY_PREFIX.concat(id), id);
     }
     
-    public Iterable<Customer> findAll() {
-        return customerRepository.findAll();
-    }
-
 }

@@ -2,15 +2,13 @@ package com.example.config.extract.domain;
 
 import java.io.Serializable;
 
-import org.springframework.data.redis.core.RedisHash;
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@RedisHash("Customer")
-@Getter @Setter @RequiredArgsConstructor @ToString
+@AllArgsConstructor @NoArgsConstructor @Getter @Setter @ToString
 public class Customer implements Serializable {
 
 	private static final long serialVersionUID = -7148364848429252590L;
@@ -26,8 +24,8 @@ public class Customer implements Serializable {
 
 	}
 	
-	private final String id;
-	private final String name;
-	private final Category category;
+	private String id;
+	private String name;
+	private Category category;
 	
 }
