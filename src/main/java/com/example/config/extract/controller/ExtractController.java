@@ -1,7 +1,5 @@
 package com.example.config.extract.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,10 +19,7 @@ public class ExtractController {
 
 	@GetMapping("/")
 	public void send() throws Exception {
-		List<Customer> list = extractService.loadCustomersFromFile("data.csv");
-		for (Customer customer : list) {
-			extractService.sendToQueue(customer);
-		}
+		extractService.fromFileToQueue("data.csv");
 	}
 
 	@GetMapping("/{id}")
