@@ -11,7 +11,7 @@ import com.example.domain.Customer;
 @Service
 public class LoadService {
 
-	private String CUSTOMER_KEY_PREFIX = "c";
+	private String CUSTOMER_KEY_PREFIX = "x:";
 	
     @Autowired
     private RedisService redisService;
