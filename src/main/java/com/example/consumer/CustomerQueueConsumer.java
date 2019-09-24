@@ -1,4 +1,4 @@
-package com.example.config.extract.consumer;
+package com.example.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import com.example.config.extract.domain.Customer;
-import com.example.config.extract.service.ExtractService;
-import com.example.config.extract.service.LoadService;
+import com.example.domain.Customer;
+import com.example.service.ExtractService;
+import com.example.service.LoadService;
 
 @Component
 public class CustomerQueueConsumer {

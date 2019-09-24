@@ -1,13 +1,13 @@
-package com.example.config.extract.controller;
+package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.config.extract.domain.Customer;
-import com.example.config.extract.service.ExtractService;
-import com.example.config.extract.service.LoadService;
+import com.example.domain.Customer;
+import com.example.service.ExtractService;
+import com.example.service.LoadService;
 
 @RestController
 public class ExtractController {

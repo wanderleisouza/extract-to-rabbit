@@ -1,4 +1,4 @@
-package com.example.config.extract.service;
+package com.example.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.config.extract.domain.Customer;
+import com.example.domain.Customer;
 
 @Service
 public class LoadService {

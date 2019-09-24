@@ -1,4 +1,4 @@
-package com.example.config.extract.service;
+package com.example.service;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.example.config.extract.domain;
+package com.example.domain;
 
 import java.io.Serializable;
 
