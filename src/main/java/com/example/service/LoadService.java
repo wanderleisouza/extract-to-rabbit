@@ -2,11 +2,13 @@ package com.example.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.domain.Customer;
+import com.example.exception.CustomerNotFoundException;
 
 @Service
 public class LoadService {
@@ -24,7 +26,8 @@ public class LoadService {
     }
     
     public Customer findById(String id) {
-        return (Customer) redisService.getValue(CUSTOMER_KEY_PREFIX.concat(id), id);
+        Object o = redisService.getValue(CUSTOMER_KEY_PREFIX.concat(id), id);
+        return Optional.ofNullable((Customer)o).orElseThrow(CustomerNotFoundException::new);
     }
     
 }
