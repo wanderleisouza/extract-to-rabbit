@@ -2,6 +2,7 @@ package com.example.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -35,6 +36,11 @@ public class RedisService {
 	public Object getValue(String key) {
 		ValueOperations<String, Object> vps = template.opsForValue();
 		return vps.get(key);
+	}
+	
+	public List<Object> getValues(Set<String> keys) {
+		ValueOperations<String, Object> vps = template.opsForValue();
+		return vps.multiGet(keys);
 	}
 	
 	public Object getValue(String mapName, String hashKey) {

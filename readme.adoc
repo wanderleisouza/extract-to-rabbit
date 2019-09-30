@@ -1,0 +1,16 @@
+== start local
+
+	redis-server
+	rabbitmq-server
+
+== spring boot
+
+	mvn spring-boot:run
+	
+== load data
+
+	curl -X POST localhost:8080
+	
+== get customer offers
+
+	curl -s localhost:8080/789/offers
