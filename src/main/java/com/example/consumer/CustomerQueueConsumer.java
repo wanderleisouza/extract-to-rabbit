@@ -13,16 +13,16 @@ import com.example.service.LoadService;
 
 @Component
 public class CustomerQueueConsumer {
-	
+
 	@Autowired
 	LoadService loadService;
-	
-	Logger logger = LoggerFactory.getLogger(CustomerQueueConsumer.class);
 
-    @RabbitListener(queues = ExtractService.queueName)
-    public void receive(@Payload Customer customer) {
-       logger.info("Consuming {}", customer);
-       loadService.save(customer);
-    }
+	private static final Logger LOGGER = LoggerFactory.getLogger(CustomerQueueConsumer.class);
+
+	@RabbitListener(queues = ExtractService.queueName)
+	public void receive(@Payload Customer customer) {
+		LOGGER.info("Consuming {}", customer);
+		loadService.save(customer);
+	}
 
 }

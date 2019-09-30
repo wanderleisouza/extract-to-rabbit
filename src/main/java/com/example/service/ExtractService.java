@@ -20,10 +20,10 @@ public class ExtractService {
 	public static final String queueName = "customersQueue";
 	private Queue queue = new Queue(queueName, true);
 	
-	public void fromFileToQueue(final String fileName) throws IOException {
+	public void customersFromFileToQueue(final String fileName) throws IOException {
 		Files.lines(Paths.get(fileName))
 			.map(l -> l.split(","))
-			.forEach(a -> rabbitTemplate.convertAndSend(queue.getName(), new Customer(a[0], a[1], Customer.Category.valueOf(a[2]))));
+			.forEach(a -> rabbitTemplate.convertAndSend(queue.getName(), new Customer(a[0], a[1], Customer.Category.valueOf(a[2]), a[3], null)));
 	}
 
 }

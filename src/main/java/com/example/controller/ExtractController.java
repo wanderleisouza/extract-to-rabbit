@@ -3,6 +3,7 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Customer;
@@ -17,14 +18,19 @@ public class ExtractController {
 	@Autowired
 	private LoadService loadService;
 
-	@GetMapping("/")
-	public void send() throws Exception {
-		extractService.fromFileToQueue("data.csv");
+	@PostMapping("/")
+	public void readFiles() throws Exception {
+		extractService.customersFromFileToQueue("data_customer_offer.csv");
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{id}/offers")
 	public Customer findById(@PathVariable final String id) {
-		return loadService.findById(id);
+		return null; //loadService.findById(id);
 	}
 
+	@GetMapping("/{id}/offers/{offerId}")
+	public Customer findById(@PathVariable final String id, @PathVariable String offerId) {
+		return loadService.findByOfferId(id, offerId);
+	}
+	
 }
