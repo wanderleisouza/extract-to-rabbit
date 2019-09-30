@@ -17,8 +17,16 @@ public class LoadService {
     private RedisService redisService;
     
     public Customer save(final Customer customer) {
-    	redisService.setKey(CUSTOMER_KEY_PREFIX.concat(customer.getId()), customer);
-    	return customer;
+    	var o = redisService.getValue(CUSTOMER_KEY_PREFIX.concat(customer.getId())); 
+    	if (o == null) {
+        	redisService.setKey(CUSTOMER_KEY_PREFIX.concat(customer.getId()), customer);
+        	return customer;
+    	} else {
+    		Customer c = (Customer)o;
+    		c.getOfferIds().addAll(customer.getOfferIds());
+        	redisService.setKey(CUSTOMER_KEY_PREFIX.concat(customer.getId()), c);
+        	return c;
+    	}
     }
     
     public Customer findCustomerById(final String id) {
