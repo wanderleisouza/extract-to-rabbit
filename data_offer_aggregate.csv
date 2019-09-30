@@ -1,4 +1,4 @@
-A000,Oferta Default
-A111,Oferta Básica
-A111,Oferta Básica
-A123,Oferta Limitada
+A000,Oferta Default,0.5
+A111,Oferta Básica,0.1
+A123,Oferta Limitada,0.2
+A777,Oferta Limitada,0.3

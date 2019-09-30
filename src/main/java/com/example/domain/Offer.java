@@ -1,7 +1,7 @@
 package com.example.domain;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,24 +14,12 @@ import lombok.ToString;
 
 @JsonInclude(Include.NON_NULL)
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @ToString
-public class Customer implements Serializable {
-
-	private static final long serialVersionUID = -7148364848429252590L;
+public class Offer implements Serializable {
 	
-	public enum Category {
-		
-		MEMBER,
-		SILVER_ELITE,
-		GOLD_ELITE,
-		PLATINUM_ELITE,
-		TITANIUM_ELITE,
-		AMBASSADOR_ELITE
-
-	}
+	private static final long serialVersionUID = -5584207855795740529L;
 	
 	private String id;
 	private String name;
-	private Category category;
-	private Set<Offer> offers;
+	private BigDecimal discount;
 
 }

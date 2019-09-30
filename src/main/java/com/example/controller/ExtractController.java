@@ -20,12 +20,13 @@ public class ExtractController {
 
 	@PostMapping("/")
 	public void readFiles() throws Exception {
+		extractService.offersFromFileToQueue("data_offer_aggregate.csv");
 		extractService.customersFromFileToQueue("data_customer_offer.csv");
 	}
 
 	@GetMapping("/{id}/offers")
 	public Customer findById(@PathVariable final String id) {
-		return loadService.findCustomerById(id);
+		return loadService.findCustomerById(id, true);
 	}
 
 }

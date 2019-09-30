@@ -7,22 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import com.example.domain.Customer;
+import com.example.domain.Offer;
 import com.example.service.ExtractService;
 import com.example.service.LoadService;
 
 @Component
-public class CustomerQueueConsumer {
+public class OfferQueueConsumer {
 
 	@Autowired
 	LoadService loadService;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CustomerQueueConsumer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(OfferQueueConsumer.class);
 
-	@RabbitListener(queues = ExtractService.CUSTOMERS_QUEUE_NAME)
-	public void receive(@Payload Customer customer) {
-		LOGGER.info("Consuming {} from rabbit", customer);
-		loadService.save(customer);
+	@RabbitListener(queues = ExtractService.OFFERS_QUEUE_NAME)
+	public void receive(@Payload Offer offer) {
+		LOGGER.info("Consuming {} from rabbit", offer);
+		loadService.save(offer);
 	}
 
 }
