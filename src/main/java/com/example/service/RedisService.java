@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,11 @@ public class RedisService {
 	@Resource
 	private RedisTemplate<String, Object> template;
 
+	public void setKey(String key, Object value) {
+		ValueOperations<String, Object> vps = template.opsForValue();
+		vps.set(key, value);
+	}
+	
 	public void setKey(String mapName, Map<String, Object> modelMap) {
 		HashOperations<String, String, Object> hps = template.opsForHash();
 		hps.putAll(mapName, modelMap);
@@ -26,6 +32,11 @@ public class RedisService {
 		return hps.entries(mapName);
 	}
 
+	public Object getValue(String key) {
+		ValueOperations<String, Object> vps = template.opsForValue();
+		return vps.get(key);
+	}
+	
 	public Object getValue(String mapName, String hashKey) {
 		HashOperations<String, String, Object> hps = this.template.opsForHash();
 		return hps.get(mapName, hashKey);

@@ -25,12 +25,7 @@ public class ExtractController {
 
 	@GetMapping("/{id}/offers")
 	public Customer findById(@PathVariable final String id) {
-		return null; //loadService.findById(id);
+		return loadService.findCustomerById(id);
 	}
 
-	@GetMapping("/{id}/offers/{offerId}")
-	public Customer findById(@PathVariable final String id, @PathVariable String offerId) {
-		return loadService.findByOfferId(id, offerId);
-	}
-	
 }

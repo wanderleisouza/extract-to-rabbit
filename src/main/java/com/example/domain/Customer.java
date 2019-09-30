@@ -1,7 +1,9 @@
 package com.example.domain;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
+
+import org.springframework.data.redis.core.RedisHash;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@RedisHash("c")
 @JsonInclude(Include.NON_NULL)
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @ToString
 public class Customer implements Serializable {
@@ -32,7 +35,6 @@ public class Customer implements Serializable {
 	private String id;
 	private String name;
 	private Category category;
-	private String offerId;
-	private List<String> offers;
+	private Set<String> offerIds;
 	
 }
